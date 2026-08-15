@@ -25,13 +25,14 @@ public class JwtService {
         );
     }
 
-    public String generateToken(String email) {
+    public String generateToken(String email, String role) {
 
         Date now = new Date();
         Date expiration = new Date(now.getTime() + expirationTime);
 
         return Jwts.builder()
                 .subject(email)
+                .claim("role", role)
                 .issuedAt(now)
                 .expiration(expiration)
                 .signWith(getSigningKey())
@@ -60,5 +61,8 @@ public class JwtService {
         } catch (Exception e) {
             return false;
         }
+    }
+    public String extractRole(String token) {
+        return extractAllClaims(token).get("role", String.class);
     }
 }
