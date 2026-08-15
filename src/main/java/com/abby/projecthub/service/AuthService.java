@@ -7,6 +7,9 @@ import com.abby.projecthub.repository.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import com.abby.projecthub.exception.EmailAlreadyExistsException;
+import com.abby.projecthub.dto.LoginRequest;
+import com.abby.projecthub.dto.LoginResponse;
+import com.abby.projecthub.exception.InvalidCredentialsException;
 
 @Service
 public class AuthService {
@@ -40,6 +43,23 @@ public class AuthService {
                 savedUser.getName(),
                 savedUser.getEmail(),
                 savedUser.getRole()
+        );
+    }
+    public LoginResponse login(LoginRequest request) {
+
+        User user = userRepository.findByEmail(request.getEmail())
+                .orElseThrow(() ->
+                        new InvalidCredentialsException("Invalid email or password"));
+
+        if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
+            throw new InvalidCredentialsException("Invalid email or password");
+        }
+
+        return new LoginResponse(
+                user.getId(),
+                user.getName(),
+                user.getEmail(),
+                user.getRole()
         );
     }
 }
