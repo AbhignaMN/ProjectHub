@@ -1,6 +1,6 @@
 package com.abby.projecthub.controller;
 
-import com.abby.projecthub.entity.User;
+import com.abby.projecthub.dto.UserResponse;
 import com.abby.projecthub.service.UserService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,7 +17,6 @@ public class UserController {
     }
 
     @GetMapping("/api/users")
-    public List<User> getAllUsers() {
+    public List<UserResponse> getAllUsers() {
         return userService.getAllUsers();
-    }
-}
+    }}
