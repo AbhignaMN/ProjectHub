@@ -2,6 +2,7 @@
 # 🚀 ProjectHub
 
 ### Full-Stack Project Management & Developer Workspace
+![ProjectHub Dashboard](screenshots/dashboard.png)
 
 ProjectHub is a multi-user project management platform that brings projects, tasks, developer activity, analytics, notes, achievements, and planning into one workspace.
 
