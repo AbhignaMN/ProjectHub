@@ -779,4 +779,4 @@ git commit -m "Improve ProjectHub README"
 git push
 ````
 
-**One correction from your previous README:** don't put screenshots inside the feature bullet lists. Keeping them in the dedicated **App
+
