@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import com.abby.projecthub.exception.InvalidCredentialsException;
 import org.springframework.http.ResponseEntity;
-
 import java.util.Map;
 
 
@@ -34,6 +33,12 @@ public class GlobalExceptionHandler {
     }
     @ExceptionHandler(ProjectNotFoundException.class)
     public ResponseEntity<?> handleProjectNotFound(ProjectNotFoundException ex) {
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .body(Map.of("error", ex.getMessage()));
+    }
+    @ExceptionHandler(TaskNotFoundException.class)
+    public ResponseEntity<?> handleTaskNotFound(TaskNotFoundException ex) {
         return ResponseEntity
                 .status(HttpStatus.NOT_FOUND)
                 .body(Map.of("error", ex.getMessage()));
