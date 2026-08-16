@@ -1,0 +1,15 @@
+package com.abby.projecthub.repository;
+
+import com.abby.projecthub.entity.Project;
+import com.abby.projecthub.entity.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.List;
+import java.util.Optional;
+
+public interface ProjectRepository extends JpaRepository<Project, Long> {
+
+    List<Project> findByOwner(User owner);
+
+    Optional<Project> findByIdAndOwner(Long id, User owner);
+}
